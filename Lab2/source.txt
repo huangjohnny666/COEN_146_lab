@@ -1,0 +1,10 @@
+socket with localhost, before you invoke the bind function, sin_addr.s_addr field of the
+sockaddr_in structure should be set properly. The proper value can be obtained either by
+my_sockaddress.sin_addr.s_addr = inet_addr("127.0.0.1")
+or by
+my_sockaddress.sin_addr.s_addr=htonl(INADDR_LOOPBACK);
+To convert an address in its standard text format into its numeric binary form use the inet_pton()
+function. The argument af specifies the family of the address.
+#define _OPEN_SYS_SOCK_IPV6
+#include <arpa/inet.h>
+int inet_pton(int af, const char *src, void *dst);
